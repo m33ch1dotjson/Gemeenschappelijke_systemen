@@ -9,7 +9,13 @@
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
+    <PackageReference Include="MySqlConnector" Version="2.4.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Services\Application.csproj" />
   </ItemGroup>
 
 </Project>

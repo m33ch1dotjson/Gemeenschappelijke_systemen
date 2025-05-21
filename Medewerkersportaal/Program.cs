@@ -1,13 +1,19 @@
 using Microsoft.Data.SqlClient;
+using Application.Services;
+using Infrastructure.Data;
+using MySqlConnector;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddTransient<SqlConnection>(sp =>
+builder.Services.AddTransient<MySqlConnection>(sp =>
 {
     var config = sp.GetRequiredService<IConfiguration>();
     var connStr = config.GetConnectionString("DefaultConnection");
-    return new SqlConnection(connStr);
+    return new MySqlConnection(connStr);
 });
+
+builder.Services.AddScoped<EmployeeRepository>();
+builder.Services.AddScoped<LoginService>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();

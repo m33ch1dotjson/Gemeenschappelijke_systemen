@@ -6,21 +6,29 @@ namespace Application.Services
 {
     public class LoginService
     {
-        private readonly UserRepository _userRepository;
+        private readonly EmployeeRepository _employeeRepository;
 
-        public LoginService(UserRepository userRepository)
+        public LoginService(EmployeeRepository employeeRepository)
         {
-            _userRepository = userRepository;
+            _employeeRepository = employeeRepository;
         }
 
         public async Task<Employee?> ValidateLoginAsync(string username, string password, CancellationToken ct = default)
         {
-            var user = await _userRepository.GetByUsernameAsync(username, ct);
-            if (user == null)
+            Console.WriteLine($"[LoginService] Gebruikersnaam: {username}");
+
+            var employee = await _employeeRepository.GetByUsernameAsync(username, ct);
+            if (employee == null)
                 return null;
 
-            bool isValid = BCrypt.Net.BCrypt.Verify(password, user.PasswordHash);
-            return isValid ? user : null;
+            Console.WriteLine("[LoginService] Gebruiker gevonden, wachtwoord controleren...");
+
+            bool isValid = BCrypt.Net.BCrypt.Verify(password, employee.PasswordHash);
+            Console.WriteLine($"[LoginService] Wachtwoord geldig: {isValid}");
+            var hash = BCrypt.Net.BCrypt.HashPassword("admin");
+            Console.WriteLine(hash);
+
+            return isValid ? employee : null;
         }
     }
 }

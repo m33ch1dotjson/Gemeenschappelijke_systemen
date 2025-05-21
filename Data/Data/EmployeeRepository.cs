@@ -1,22 +1,25 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using MySqlConnector;
 using Domain.Entities;
 
 namespace Infrastructure.Data
 {
-    public class UserRepository
+    public class EmployeeRepository
     {
-        private readonly SqlConnection _connection;
+        private readonly MySqlConnection _connection;
 
-        public UserRepository(SqlConnection connection)
+        public EmployeeRepository(MySqlConnection connection)
         {
             _connection = connection;
         }
 
         public async Task<Employee> GetByUsernameAsync(string username, CancellationToken ct = default)
         {
-            const string sql = "SELECT Id, Username, PasswordHash FROM Users WHERE Username = @Username";
+            if (_connection.State != System.Data.ConnectionState.Open)
+                await _connection.OpenAsync(ct);
 
-            using var command = new SqlCommand(sql, _connection);
+            const string sql = "SELECT Id, Username, PasswordHash FROM Employee WHERE Username = @Username";
+
+            using var command = new MySqlCommand(sql, _connection);
             command.Parameters.AddWithValue("@Username", username);
 
             using var reader = await command.ExecuteReaderAsync(ct);
