@@ -1,0 +1,34 @@
+﻿@page "/Medewerker/Index"
+@model Medewerkersportaal.Pages.Medewerker.IndexModel
+@{
+}
+
+<h1>Medewerkers</h1>
+
+<a asp-page="/Medewerker/Create" class="btn btn-success mb-3">
+    ➕ Nieuwe medewerker
+</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Volledige Naam</th>
+            <th>Username</th>
+            <th>Acties</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var medewerker in Model.Medewerkers)
+        {
+            <tr>
+                <td>@medewerker.Id</td>
+                <td>@medewerker.full_name</td>
+                <td>@medewerker.Username</td>
+                <td>
+                    <a asp-page="/Medewerker/Delete" asp-route-id="@medewerker.Id" class="btn btn-danger btn-sm">🗑️</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

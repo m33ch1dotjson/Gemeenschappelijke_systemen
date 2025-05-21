@@ -19,6 +19,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medewerkersportaal", "Medew
 		{E84EA64C-6798-488A-9A9A-76C7B0DCFED3} = {E84EA64C-6798-488A-9A9A-76C7B0DCFED3}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{9E17F591-9217-4A88-844A-92989F6CE363}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F253F8A8-556D-4BCE-B895-6BDF1F8BBE24} = {F253F8A8-556D-4BCE-B895-6BDF1F8BBE24}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +46,10 @@ Global
 		{D1031354-4BEB-4D15-9C04-8CB732CEC659}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1031354-4BEB-4D15-9C04-8CB732CEC659}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1031354-4BEB-4D15-9C04-8CB732CEC659}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E17F591-9217-4A88-844A-92989F6CE363}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E17F591-9217-4A88-844A-92989F6CE363}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E17F591-9217-4A88-844A-92989F6CE363}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E17F591-9217-4A88-844A-92989F6CE363}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
