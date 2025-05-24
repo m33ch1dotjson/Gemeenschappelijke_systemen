@@ -1,0 +1,6 @@
+﻿@model Post
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@Html.Raw(Model?.GetContent())

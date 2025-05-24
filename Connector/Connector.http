@@ -1,0 +1,6 @@
+@Connector_HostAddress = http://localhost:5251
+
+GET {{Connector_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

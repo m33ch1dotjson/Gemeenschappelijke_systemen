@@ -12,7 +12,6 @@
 <table class="table">
     <thead>
         <tr>
-            <th>ID</th>
             <th>Volledige Naam</th>
             <th>Username</th>
             <th>Acties</th>
@@ -22,11 +21,10 @@
         @foreach (var medewerker in Model.Medewerkers)
         {
             <tr>
-                <td>@medewerker.Id</td>
-                <td>@medewerker.full_name</td>
-                <td>@medewerker.Username</td>
+                <td>@medewerker.GetFullName()</td>
+                <td>@medewerker.GetUsername()</td>
                 <td>
-                    <a asp-page="/Medewerker/Delete" asp-route-id="@medewerker.Id" class="btn btn-danger btn-sm">🗑️</a>
+                    <a asp-page="/Medewerker/Delete" asp-route-id="" class="btn btn-danger btn-sm">🗑️</a>
                 </td>
             </tr>
         }

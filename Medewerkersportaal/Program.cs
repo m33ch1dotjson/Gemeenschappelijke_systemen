@@ -2,6 +2,7 @@ using Microsoft.Data.SqlClient;
 using Application.Services;
 using Infrastructure.Data;
 using MySqlConnector;
+using Domain.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,7 @@ builder.Services.AddTransient<MySqlConnection>(sp =>
 
 builder.Services.AddScoped<EmployeeRepository>();
 builder.Services.AddScoped<LoginService>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();

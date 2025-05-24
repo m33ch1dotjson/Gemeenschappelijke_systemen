@@ -2,14 +2,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Domain.Entities;
 using Infrastructure.Data;
+using Domain.Interfaces;
 
 namespace Medewerkersportaal.Pages.Medewerker
 {
     public class CreateModel : PageModel
     {
-        private readonly EmployeeRepository _repository;
+        private readonly IEmployeeRepository _repository;
 
-        public CreateModel(EmployeeRepository repository)
+        public CreateModel(IEmployeeRepository repository)
         {
             _repository = repository;
         }
@@ -28,11 +29,26 @@ namespace Medewerkersportaal.Pages.Medewerker
             if (!ModelState.IsValid)
                 return Page();
 
-            var medewerker = new Employee
+            var medewerker = new Employee();
+
+            try
             {
-                full_name = full_name,
-                Username = Username
-            };
+                medewerker.SetUsername(Username);
+            }
+            catch (ArgumentException ex)
+            {
+                ModelState.AddModelError(nameof(Username), ex.Message);
+            }
+
+            try
+            {
+                medewerker.SetFullName(full_name);
+            }
+            catch (ArgumentException ex)
+            {
+                ModelState.AddModelError(nameof(full_name), ex.Message);
+            }
+
 
             try
             {

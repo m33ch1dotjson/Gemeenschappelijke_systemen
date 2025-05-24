@@ -10,11 +10,13 @@
     <div class="mb-3">
         <label asp-for="full_name" class="form-label"></label>
         <input asp-for="full_name" class="form-control" />
+        <span asp-validation-for="full_name" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
         <label asp-for="Username" class="form-label"></label>
         <input asp-for="Username" class="form-control" />
+        <span asp-validation-for="Username" class="text-danger"></span>
     </div>
 
     <div class="mb-3">

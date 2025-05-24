@@ -2,14 +2,15 @@ using Domain.Entities;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Domain.Interfaces;
 
 namespace Medewerkersportaal.Pages.Medewerker
 {
     public class IndexModel : PageModel
     {
-        private readonly EmployeeRepository _repository;
+        private readonly IEmployeeRepository _repository;
 
-        public IndexModel(EmployeeRepository repository)
+        public IndexModel(IEmployeeRepository repository)
         {
             _repository = repository;
         }

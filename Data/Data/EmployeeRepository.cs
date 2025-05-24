@@ -1,10 +1,11 @@
 ﻿using MySqlConnector;
 using Domain.Entities;
 using System.Data;
+using Domain.Interfaces;
 
 namespace Infrastructure.Data
 {
-    public class EmployeeRepository
+    public class EmployeeRepository : IEmployeeRepository
     {
         private readonly MySqlConnection _connection;
 
@@ -18,7 +19,7 @@ namespace Infrastructure.Data
             if (_connection.State != System.Data.ConnectionState.Open)
                 await _connection.OpenAsync(ct);
 
-            const string sql = "SELECT Id, Username, PasswordHash FROM Employee WHERE Username = @Username";
+            const string sql = "SELECT Username, full_name, PasswordHash FROM Employee WHERE Username = @Username";
 
             using var command = new MySqlCommand(sql, _connection);
             command.Parameters.AddWithValue("@Username", username);
@@ -26,12 +27,11 @@ namespace Infrastructure.Data
             using var reader = await command.ExecuteReaderAsync(ct);
             if (await reader.ReadAsync(ct))
             {
-                var employee = new Employee
-                {
-                    Id = reader.GetInt32(0),
-                    Username = reader.GetString(1),
-                };
-                employee.LoadPasswordHash(reader.GetString(2)); 
+                var employee = new Employee();
+                employee.SetUsername(reader.GetString("Username"));
+                employee.SetFullName(reader.GetString("full_name"));
+                employee.LoadPasswordHash(reader.GetString("PasswordHash"));
+
                 return employee;
             }
 
@@ -49,19 +49,21 @@ namespace Infrastructure.Data
             using var reader = await cmd.ExecuteReaderAsync(ct);
 
             var list = new List<Employee>();
+
             while (await reader.ReadAsync(ct))
             {
-                var emp = new Employee
-                {
-                    Id = reader.GetInt32("Id"),
-                    full_name = reader.GetString("full_name"),
-                    Username = reader.GetString("Username"),
-                };
+                var emp = new Employee(
+                    username: reader.GetString("Username"),
+                    fullName: reader.GetString("full_name")
+                );
+                emp.LoadPasswordHash(reader.GetString("PasswordHash"));
+
                 list.Add(emp);
             }
 
             return list;
         }
+
 
         public async Task AddAsync(Employee medewerker, CancellationToken ct)
         {
@@ -74,9 +76,9 @@ namespace Infrastructure.Data
             """;
 
             using var cmd = new MySqlCommand(sql, _connection);
-            cmd.Parameters.AddWithValue("@full_name", medewerker.full_name);
-            cmd.Parameters.AddWithValue("@Username", medewerker.Username);
-            cmd.Parameters.AddWithValue("@PasswordHash", medewerker.PasswordHash);
+            cmd.Parameters.AddWithValue("@full_name", medewerker.GetFullName());
+            cmd.Parameters.AddWithValue("@Username", medewerker.GetUsername());
+            cmd.Parameters.AddWithValue("@PasswordHash", medewerker.GetPasswordHash());
 
             await cmd.ExecuteNonQueryAsync(ct);
         }

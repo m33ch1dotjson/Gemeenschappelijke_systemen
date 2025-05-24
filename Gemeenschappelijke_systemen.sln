@@ -24,6 +24,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj
 		{F253F8A8-556D-4BCE-B895-6BDF1F8BBE24} = {F253F8A8-556D-4BCE-B895-6BDF1F8BBE24}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connector", "Connector\Connector.csproj", "{329916AF-0AC2-4DA7-944A-F71BBF008709}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS", "CMS\CMS.csproj", "{1B005927-FAEE-48BA-9265-6731456390B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +54,14 @@ Global
 		{9E17F591-9217-4A88-844A-92989F6CE363}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E17F591-9217-4A88-844A-92989F6CE363}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E17F591-9217-4A88-844A-92989F6CE363}.Release|Any CPU.Build.0 = Release|Any CPU
+		{329916AF-0AC2-4DA7-944A-F71BBF008709}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{329916AF-0AC2-4DA7-944A-F71BBF008709}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{329916AF-0AC2-4DA7-944A-F71BBF008709}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{329916AF-0AC2-4DA7-944A-F71BBF008709}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B005927-FAEE-48BA-9265-6731456390B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B005927-FAEE-48BA-9265-6731456390B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B005927-FAEE-48BA-9265-6731456390B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B005927-FAEE-48BA-9265-6731456390B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

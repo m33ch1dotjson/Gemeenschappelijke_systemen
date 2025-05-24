@@ -1,14 +1,15 @@
 ﻿using Domain.Entities;
 using Infrastructure.Data;
+using Domain.Interfaces;
 
 
 namespace Application.Services
 {
     public class LoginService
     {
-        private readonly EmployeeRepository _employeeRepository;
+        private readonly IEmployeeRepository _employeeRepository;
 
-        public LoginService(EmployeeRepository employeeRepository)
+        public LoginService(IEmployeeRepository employeeRepository)
         {
             _employeeRepository = employeeRepository;
         }
@@ -23,7 +24,7 @@ namespace Application.Services
 
             Console.WriteLine("[LoginService] Gebruiker gevonden, wachtwoord controleren...");
 
-            bool isValid = BCrypt.Net.BCrypt.Verify(password, employee.PasswordHash);
+            bool isValid = BCrypt.Net.BCrypt.Verify(password, employee.GetPasswordHash());
             Console.WriteLine($"[LoginService] Wachtwoord geldig: {isValid}");
             var hash = BCrypt.Net.BCrypt.HashPassword("admin");
             Console.WriteLine(hash);

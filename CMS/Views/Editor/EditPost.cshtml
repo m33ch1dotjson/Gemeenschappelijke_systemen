@@ -1,0 +1,27 @@
+﻿@model Post
+@{
+	ViewData["Title"] = "Pagina Bewerken";
+}
+<h1>@Model.GetTitle()</h1>
+
+<form asp-action="SavePage" method="Post">
+	<input name="Title" type="hidden" value="@Model.GetTitle()" />
+	<div class="formgroup">
+		<textarea id="summernote" name="content" class="form-control" rows="30">
+			@Model.GetContent()
+		</textarea>
+	</div>
+	<div class="text-center">
+		<button type="submit" class="btn btn-primary">Opslaan</button>
+	</div>
+</form>
+
+@section Scripts {
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#summernote').summernote();
+		});
+	</script>
+}
