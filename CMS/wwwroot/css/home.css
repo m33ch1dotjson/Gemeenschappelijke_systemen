@@ -1,0 +1,53 @@
+﻿svg {
+    width:0;
+    height:0;
+}
+
+svg path {
+    transform:translate(300px, 300px) scale(3);
+}
+
+#koediv {
+    width: 600px;
+    height: 600px;
+    background-image: url("/assets/koe.jpg ");
+    background-size: cover;
+    background-position: center center;
+    clip-path:url(#blop_clippath);
+    overflow: hidden;
+}
+
+#tentdiv {
+    width: 600px;
+    height: 600px;
+    background-image: url("/assets/tent.jpg ");
+    background-size: cover;
+    background-position: center center;
+    clip-path: url(#blop_clippath);
+    overflow: hidden;
+}
+
+#glijbaandiv {
+    width: 600px;
+    height: 600px;
+    background-image: url("/assets/glijbaan.jpg");
+    background-size: cover;
+    background-position: center center;
+    clip-path: url(#blop_clippath);
+    overflow: hidden;
+}
+
+#slider{
+    width: 600px;
+    height: 600px;
+    overflow: hidden;
+}
+
+#sliderrail {
+    width:60000px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    left: 0px;
+    transition: left 1000ms ease-in-out;
+}
