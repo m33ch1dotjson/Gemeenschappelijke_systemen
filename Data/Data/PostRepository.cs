@@ -24,7 +24,7 @@ namespace Infrastructure.Data
             if (_connection.State != System.Data.ConnectionState.Open)
                 await _connection.OpenAsync(ct);
 
-            const string sql = "SELECT Content FROM Post WHERE Title = @Title";
+            const string sql = "SELECT Title, Content FROM Post WHERE Title = @Title";
 
             using var command = new MySqlCommand(sql, _connection);
             command.Parameters.AddWithValue("@Title", title);
@@ -54,7 +54,7 @@ namespace Infrastructure.Data
 
             using var cmd = new MySqlCommand(sql, _connection);
             cmd.Parameters.AddWithValue("@Title", post.GetTitle());
-            cmd.Parameters.AddWithValue("@Username", post.GetContent());
+            cmd.Parameters.AddWithValue("@Content", post.GetContent());
 
             await cmd.ExecuteNonQueryAsync(ct);
         }

@@ -27,7 +27,7 @@ namespace CMS.Controllers
                 post = new Post();
                 post.SetTitle(title);
 
-                _postRepository.AddAsync(post);
+                await _postRepository.AddAsync(post);
             }
 
             return View(post);

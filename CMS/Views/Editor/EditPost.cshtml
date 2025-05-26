@@ -4,7 +4,7 @@
 }
 <h1>@Model.GetTitle()</h1>
 
-<form asp-action="SavePage" method="Post">
+<form asp-action="SavePost" method="Post">
 	<input name="Title" type="hidden" value="@Model.GetTitle()" />
 	<div class="formgroup">
 		<textarea id="summernote" name="content" class="form-control" rows="30">
