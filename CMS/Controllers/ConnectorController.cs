@@ -1,12 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Domain.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Domain.Entities;
 
 namespace CMS.Controllers
 {
     public class ConnectorController : Controller
     {
-        public IActionResult Index()
+        private readonly IReservationRepository _reservationRepository;
+
+        public ConnectorController(IReservationRepository reservationRepository)
         {
-            return View();
+            _reservationRepository = reservationRepository;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index(CancellationToken ct)
+        {
+            var reservations = await _reservationRepository.GetPendingReservationsAsync(ct);
+            return View(reservations);
         }
     }
 }

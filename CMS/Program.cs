@@ -18,6 +18,7 @@ builder.Services.AddTransient<MySqlConnection>(sp =>
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<LoginService>();
 builder.Services.AddScoped<IPostRepository, PostRepository>();
+builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
 
 var app = builder.Build();
 

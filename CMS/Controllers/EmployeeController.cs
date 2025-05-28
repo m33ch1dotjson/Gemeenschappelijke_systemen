@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Domain.Entities;
 using Domain.Interfaces;
+using Infrastructure.Data;
 
 namespace CMS.Controllers
 {
@@ -13,6 +14,15 @@ namespace CMS.Controllers
         {
             _repository = repository;
         }
+
+        public async Task<IActionResult> Index(CancellationToken ct)
+        {
+            var medewerkers = await _repository.GetAllAsync(ct);
+
+
+            return View(medewerkers); 
+        }
+
 
         [HttpGet]
         public IActionResult Create()
