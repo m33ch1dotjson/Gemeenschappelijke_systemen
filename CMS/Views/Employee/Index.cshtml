@@ -1,0 +1,33 @@
+﻿@model List<Domain.Entities.Employee>
+
+@{
+    ViewData["Title"] = "Medewerkers";
+}
+
+<h1>Medewerkers</h1>
+
+<a asp-controller="Employee" asp-action="Create" class="btn btn-success mb-3">
+    ➕ Nieuwe medewerker
+</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Volledige Naam</th>
+            <th>Username</th>
+            <th>Acties</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var medewerker in Model)
+        {
+            <tr>
+                <td>@medewerker.GetFullName()</td>
+                <td>@medewerker.GetUsername()</td>
+                <td>
+                    <a asp-controller="Employee" asp-action="Delete" class="btn btn-danger btn-sm">🗑️</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

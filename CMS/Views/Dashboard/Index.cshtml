@@ -1,0 +1,43 @@
+﻿<h1 class="mb-4">Welkom op het dashboard!</h1>
+<p class="mb-5">Je bent succesvol ingelogd.</p>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- Medewerkersportaal -->
+    <div class="col">
+        <a asp-controller="Employee" asp-action="Index" class="text-decoration-none text-dark">
+            <div class="card h-100 text-center shadow-sm border-0">
+                <img src="/assets/icons/person-badge.svg" class="card-img-top p-4" alt="Medewerkers" style="height: 120px; object-fit: contain;">
+                <div class="card-body">
+                    <h5 class="card-title">Medewerkersportaal</h5>
+                    <p class="card-text">Beheer en voeg medewerkers toe of verwijder ze.</p>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <!-- CMS -->
+    <div class="col">
+        <a asp-controller="Editor" asp-action="Index" class="text-decoration-none text-dark">
+            <div class="card h-100 text-center shadow-sm border-0">
+                <img src="/assets/icons/body-text.svg" class="card-img-top p-4" alt="CMS" style="height: 120px; object-fit: contain;">
+                <div class="card-body">
+                    <h5 class="card-title">Content Management</h5>
+                    <p class="card-text">Pas eenvoudig pagina-inhoud en tekst aan voor het park.</p>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <!-- Exact Online -->
+    <div class="col">
+        <a asp-controller="Connector" asp-action="Index" class="text-decoration-none text-dark">
+            <div class="card h-100 text-center shadow-sm border-0">
+                <img src="/assets/icons/plugin.svg" class="card-img-top p-4" alt="Exact" style="height: 120px; object-fit: contain;">
+                <div class="card-body">
+                    <h5 class="card-title">Exact Online koppeling</h5>
+                    <p class="card-text">Synchroniseer gegevens tussen het park en Exact Online.</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>

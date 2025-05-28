@@ -14,7 +14,7 @@ namespace CMS.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var post = await _postRepository.GetByTitleAsync("Facilities");
+            var post = await _postRepository.GetByTitleAsync("Faciliteiten");
             return View(post);
         }
     }

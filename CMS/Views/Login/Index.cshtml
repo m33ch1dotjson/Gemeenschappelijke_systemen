@@ -1,0 +1,31 @@
+﻿@model CMS.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Medewerkersportaal";
+}
+
+<h2>Inloggen medewerkersportaal</h2>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+
+<form method="post">
+    <div>
+        <label asp-for="Username"></label><br />
+        <input asp-for="Username" class="form-control" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+    <br />
+    <div>
+        <label asp-for="Password"></label><br />
+        <input asp-for="Password" class="form-control" type="password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Inloggen</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
