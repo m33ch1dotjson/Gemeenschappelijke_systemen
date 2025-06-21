@@ -1,6 +1,8 @@
 ﻿using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Domain.Entities;
+using CMS.Models;
+using CMS.ViewModels;
 
 namespace CMS.Controllers
 {
@@ -15,6 +17,12 @@ namespace CMS.Controllers
 
         public IActionResult Index()
         {
+            var LoginViewModel = HttpContext.Session.GetObject<LoginViewModel>("currentEmployee");
+            if (LoginViewModel == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             return View();
         }
 

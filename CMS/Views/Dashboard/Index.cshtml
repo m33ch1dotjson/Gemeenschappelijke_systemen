@@ -1,4 +1,9 @@
-﻿<h1 class="mb-4">Welkom op het dashboard!</h1>
+﻿@using CMS.ViewModels
+@{
+    var LoginViewModel = Context.Session.GetObject<LoginViewModel>("currentEmployee") ?? new LoginViewModel();
+}
+
+<h1 class="mb-4">Welkom op het dashboard, @LoginViewModel.Username !</h1>
 <p class="mb-5">Je bent succesvol ingelogd.</p>
 
 <div class="row row-cols-1 row-cols-md-3 g-4">

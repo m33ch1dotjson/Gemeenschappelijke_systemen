@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CMS.ViewModels;
 using Application.Services;
+using CMS.Models;
 
 namespace CMS.Controllers
 {
@@ -33,7 +34,7 @@ namespace CMS.Controllers
                 model.ErrorMessage = "Ongeldige gebruikersnaam of wachtwoord.";
                 return View(model);
             }
-
+            HttpContext.Session.SetObject("currentEmployee", model);
             return RedirectToAction("Index", "Dashboard");
         }
     }

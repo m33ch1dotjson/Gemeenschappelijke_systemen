@@ -34,9 +34,17 @@
                             <a class="nav-link text-dark" asp-controller="Contact" asp-action="Index">Contact</a>
                         </li>
                     </ul>
-                    <div class="d-flex">
-                        <a class="btn btn-outline-primary" asp-controller="Login" asp-action="Index">Inloggen</a>
-                    </div>
+                    @{
+                        var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+                        var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+                    }
+
+                    @if (currentController == "Home" && currentAction == "Index")
+                    {
+                        <div class="d-flex">
+                            <a class="btn btn-outline-primary" asp-controller="Login" asp-action="Index">Inloggen</a>
+                        </div>
+                    }
                 </div>
             </div>
         </nav>

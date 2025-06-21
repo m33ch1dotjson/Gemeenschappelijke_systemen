@@ -8,4 +8,13 @@ setInterval(() => {
     sliderrail_element.style.left = "-" + ((current_slide-1)*600)+"px"
 },3000)
 
-console.log(current_slide)
+const main_elements = document.querySelectorAll("#boksjes div")
+window.addEventListener("scroll", () => {
+    main_elements.forEach((element) => {
+        if (element.getBoundingClientRect().top - window.innerHeight < 0) {
+            element.classList.add("active")
+        } else {
+                element.classList.remove("active")
+        }
+    })
+})

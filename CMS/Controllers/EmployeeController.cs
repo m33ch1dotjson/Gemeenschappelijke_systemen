@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Domain.Entities;
 using Domain.Interfaces;
 using Infrastructure.Data;
+using CMS.Models;
 
 namespace CMS.Controllers
 {
@@ -17,6 +18,12 @@ namespace CMS.Controllers
 
         public async Task<IActionResult> Index(CancellationToken ct)
         {
+            var LoginViewModel = HttpContext.Session.GetObject<LoginViewModel>("currentEmployee");
+            if (LoginViewModel == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             var medewerkers = await _repository.GetAllAsync(ct);
 
 
