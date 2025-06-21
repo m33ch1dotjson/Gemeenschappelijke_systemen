@@ -19,6 +19,10 @@
         </tr>
     </thead>
     <tbody>
+        <a class="btn btn-outline-primary mb-3" asp-action="Index" asp-route-sortOrder="@ViewBag.SortOrder">
+            Sorteer op naam (@(ViewBag.SortOrder == "asc" ? "A-Z" : "Z-A"))
+        </a>
+
         @foreach (var medewerker in Model)
         {
             <tr>

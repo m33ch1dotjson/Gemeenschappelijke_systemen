@@ -20,6 +20,16 @@ namespace CMS.Controllers
             return View(new LoginViewModel());
         }
 
+        /// <summary>
+        /// Handles the POST request for the login form.
+        /// Validates the input model, checks the user credentials via the login service,
+        /// sets the current user in session if valid, and redirects to the dashboard.
+        /// If validation fails or credentials are incorrect, the login view is shown again with an error message.
+        /// </summary>
+        /// <param name="model">LoginViewModel containing username and password</param>
+        /// <param name="ct">CancellationToken to allow request cancellation</param>
+        /// <returns>Redirect to Dashboard on success, otherwise the login view with errors</returns>
+
         [HttpPost]
         public async Task<IActionResult> Index(LoginViewModel model, CancellationToken ct)
         {

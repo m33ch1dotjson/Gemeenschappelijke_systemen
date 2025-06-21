@@ -18,6 +18,7 @@ namespace CMS.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(CancellationToken ct)
         {
+            // Only accessible with a valid session token 
             var LoginViewModel = HttpContext.Session.GetObject<LoginViewModel>("currentEmployee");
             if (LoginViewModel == null)
             {

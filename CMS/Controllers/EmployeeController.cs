@@ -4,6 +4,7 @@ using Domain.Entities;
 using Domain.Interfaces;
 using Infrastructure.Data;
 using CMS.Models;
+using Domain.Comparers;
 
 namespace CMS.Controllers
 {
@@ -16,8 +17,16 @@ namespace CMS.Controllers
             _repository = repository;
         }
 
-        public async Task<IActionResult> Index(CancellationToken ct)
+        /// <summary>
+        /// Shows a list of employees, sorted by name A-Z or Z-A depending on the query.
+        /// Requires a valid session (i.e., logged-in user).
+        /// </summary>
+        /// <param name="sortOrder">The desired sort direction: "asc" or "desc"</param>
+        /// <param name="ct">Cancellation token</param>
+        /// <returns>The sorted employee list view</returns>
+        public async Task<IActionResult> Index(string sortOrder = "asc", CancellationToken ct = default)
         {
+            // Session check: redirect to login if no active user session
             var LoginViewModel = HttpContext.Session.GetObject<LoginViewModel>("currentEmployee");
             if (LoginViewModel == null)
             {
@@ -26,6 +35,12 @@ namespace CMS.Controllers
 
             var medewerkers = await _repository.GetAllAsync(ct);
 
+            // Use the custom comparer to sort by full name
+            var comparer = new EmployeeComparer(descending: sortOrder == "desc");
+            medewerkers.Sort(comparer);
+
+            // Store the reverse order for toggling in the view button
+            ViewBag.SortOrder = sortOrder == "desc" ? "asc" : "desc";
 
             return View(medewerkers); 
         }
