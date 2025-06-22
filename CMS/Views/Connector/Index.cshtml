@@ -1,7 +1,7 @@
 ﻿@model List<Domain.Entities.Reservation>
 
 @{
-    ViewData["Title"] = "Exact Online Koppeling";
+    ViewData["Title"] = "RompSlomp Koppeling";
 }
 
 <h1 class="mb-4">Openstaande reserveringen</h1>
@@ -15,6 +15,7 @@ else
     <table class="table table-bordered table-hover">
         <thead class="table-light">
             <tr>
+                <th>ID</th>
                 <th>Voornaam</th>
                 <th>Achternaam</th>
                 <th>Email</th>
@@ -28,6 +29,7 @@ else
             @foreach (var r in Model)
             {
                 <tr>
+                    <td>@r.GetId()</td>
                     <td>@r.GetGuest()?.GetFirstName()</td>
                     <td>@r.GetGuest()?.GetLastName()</td>
                     <td>@r.GetGuest()?.GetEmail()</td>
@@ -35,7 +37,8 @@ else
                     <td>@r.GetCheckOutDate().ToString("dd-MM-yyyy")</td>
                     <td>€ @r.GetTotalPrice().ToString("0.00")</td>
                     <td>
-                        <form asp-action="SendToExact" asp-controller="Connector" method="post">
+                        <form asp-action="SendToRompslomp" asp-controller="Connector" method="post">
+                            <input type="hidden" name="reservationId" value="@r.GetId()" />
                             <button type="submit" class="btn btn-sm btn-success">Verstuur</button>
                         </form>
                     </td>

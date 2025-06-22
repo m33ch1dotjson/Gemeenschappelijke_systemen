@@ -9,11 +9,14 @@ namespace Domain.Entities
 {
     public class Reservation
     {
+        private int _id;
         private decimal _totalPrice;
         private Guest? _guest;
         private DateTime _checkInDate;
         private DateTime _checkOutDate;
 
+        public int GetId() => _id;
+        public void SetId(int id) => _id = id;
         public decimal GetTotalPrice() => _totalPrice;
         public void SetTotalPrice(decimal totalPrice) => _totalPrice = totalPrice;
 

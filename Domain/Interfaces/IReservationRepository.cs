@@ -10,5 +10,7 @@ namespace Domain.Interfaces
     public interface IReservationRepository
     {
         Task<List<Reservation>> GetPendingReservationsAsync(CancellationToken ct);
+        Task<Reservation?> GetByIdAsync(int reservationId, CancellationToken ct = default);
+
     }
 }

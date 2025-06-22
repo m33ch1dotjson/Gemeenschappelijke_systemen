@@ -11,8 +11,7 @@ namespace Infrastructure.Data
 
         public EmployeeRepository(MySqlConnection connection)
         {
-            // Get the shared database connection from the singleton factory
-            _connection = DbConnectionFactory.GetConnection();
+            _connection = connection;
         }
 
         public async Task<Employee> GetByUsernameAsync(string username, CancellationToken ct = default)
