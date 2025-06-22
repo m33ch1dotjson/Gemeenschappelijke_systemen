@@ -16,7 +16,8 @@ namespace Infrastructure.Data
 
         public PostRepository(MySqlConnection connection)
         {
-            _connection = connection;
+            // Get the shared database connection from the singleton factory
+            _connection = DbConnectionFactory.GetConnection();
         }
 
         public async Task<Post> GetByTitleAsync(string title, CancellationToken ct = default)

@@ -34,6 +34,13 @@
             _username = username;
         }
 
+        /// <summary>
+        /// Sets the employee's password by hashing the provided plain text password using BCrypt.
+        /// Ensures the password is not null, empty, or too short before hashing.
+        /// </summary>
+        /// <exception>
+        /// Thrown if the password is null, whitespace, or shorter than 6 characters.
+        /// </exception>
         public void SetPassword(string plainPassword)
         {
             if (string.IsNullOrWhiteSpace(plainPassword) || plainPassword.Length < 6)

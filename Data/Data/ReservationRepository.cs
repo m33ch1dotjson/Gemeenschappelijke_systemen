@@ -16,7 +16,8 @@ namespace Infrastructure.Data
 
         public ReservationRepository(MySqlConnection connection)
         {
-            _connection = connection;
+            // Get the shared database connection from the singleton factory
+            _connection = DbConnectionFactory.GetConnection();
         }
 
         public async Task<List<Reservation>> GetPendingReservationsAsync(CancellationToken ct = default)

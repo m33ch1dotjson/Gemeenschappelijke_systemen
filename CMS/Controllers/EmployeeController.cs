@@ -18,8 +18,8 @@ namespace CMS.Controllers
         }
 
         /// <summary>
-        /// Shows a list of employees, sorted by name A-Z or Z-A depending on the query.
-        /// Requires a valid session (i.e., logged-in user).
+        /// Shows a list of employees, sorted by name A-Z or Z-A.
+        /// Requires a valid session.
         /// </summary>
         /// <param name="sortOrder">The desired sort direction: "asc" or "desc"</param>
         /// <param name="ct">Cancellation token</param>
