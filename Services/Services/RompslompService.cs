@@ -12,6 +12,9 @@ namespace Application.Services
 {
     public interface IRompslompService
     {
+        /// <summary>
+        /// Sends a reservation as a sales invoice to the Rompslomp API.
+        /// </summary>
         Task<int> SendReservationAsInvoiceAsync(Reservation res, CancellationToken ct);
     }
 
